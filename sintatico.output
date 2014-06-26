@@ -1,0 +1,912 @@
+Terminais não utilizados na gramática
+
+   I_COMENTARIO
+   F_COMENTARIO
+   MULTI
+   DIV
+   OU_EXCL
+   OU
+   NAO
+   E
+   PONTO_VIRGULA
+   VIRGULA
+   CHAVE_ESQUERDA
+   CHAVE_DIREITA
+   COLCHETE_ESQUERDO
+   COLCHETE_DIREITO
+   INTERROGACAO
+   TAB
+   DEFINA
+   LER
+   INCREMENTO
+   REPITA
+   REAL
+
+
+Gramática
+
+    0 $accept: Entrada $end
+
+    1 Entrada: %empty
+    2        | Entrada Linha
+
+    3 Linha: FIM_LINHA
+    4      | ALGORITMO
+    5      | Expressoes
+    6      | FIM_ALGORITMO
+
+    7 Expressoes: AtribuicaoExpressao
+    8           | ExpressaoDeclaracao
+    9           | Inclua
+   10           | Mostra
+   11           | Se
+   12           | Enquanto
+   13           | Para
+   14           | Escolha
+   15           | error FIM_LINHA
+
+   16 AtribuicaoExpressao: IDENTIFICADOR ATRIBUICAO AtribuicaoTipo
+
+   17 AtribuicaoTipo: NUMERO
+   18               | DECIMAL
+   19               | FRASE
+
+   20 ExpressaoDeclaracao: Tipo IDENTIFICADOR
+   21                    | Tipo IDENTIFICADOR ATRIBUICAO AtribuicaoTipo
+
+   22 Tipo: INTEIRO
+   23     | DECIMAL
+   24     | TIPO_STRING
+   25     | CARACTERE
+
+   26 Comparador: IGUAL
+   27           | MAIOR
+   28           | MENOR
+   29           | MAIOR_IGUAL
+   30           | MENOR_IGUAL
+   31           | DIFERENTE
+
+   32 Incremento: MAIS
+   33           | MENOS
+
+   34 Parametro: IDENTIFICADOR Comparador IDENTIFICADOR
+
+   35 Variavel: IDENTIFICADOR
+   36         | NUMERO
+   37         | DECIMAL
+
+   38 Inclua: INCLUA MENOR IDENTIFICADOR MAIOR
+
+   39 Mostra: MOSTRA FRASE
+   40       | MOSTRA IDENTIFICADOR
+
+   41 Se: SE PAR_ESQ Parametro PAR_DIR ENTAO
+   42   | SENAO
+   43   | FIM_SENAO
+   44   | FIM_SE
+
+   45 Enquanto: ENQUANTO PAR_ESQ Parametro PAR_DIR FACA
+   46         | FIM_ENQUANTO
+
+   47 Para: PARA PAR_ESQ IDENTIFICADOR DE Variavel ATE Variavel PASSO IDENTIFICADOR Incremento PAR_DIR FACA
+   48     | FIM_PARA
+
+   49 Escolha: ESCOLHA PAR_ESQ Variavel PAR_DIR
+   50        | CASO Variavel
+   51        | PARE
+   52        | CASO_CONTRARIO
+   53        | FIM_ESCOLHA
+
+
+Terminais, com as regras onde eles aparecem
+
+$end (0) 0
+error (256) 15
+ALGORITMO (258) 4
+FIM_ALGORITMO (259) 6
+I_COMENTARIO (260)
+F_COMENTARIO (261)
+MAIS (262) 32
+MENOS (263) 33
+MULTI (264)
+DIV (265)
+IGUAL (266) 26
+MAIOR (267) 27 38
+MENOR (268) 28 38
+MAIOR_IGUAL (269) 29
+MENOR_IGUAL (270) 30
+DIFERENTE (271) 31
+ATRIBUICAO (272) 16 21
+OU_EXCL (273)
+OU (274)
+NAO (275)
+E (276)
+PONTO_VIRGULA (277)
+VIRGULA (278)
+CHAVE_ESQUERDA (279)
+CHAVE_DIREITA (280)
+PAR_ESQ (281) 41 45 47 49
+PAR_DIR (282) 41 45 47 49
+COLCHETE_ESQUERDO (283)
+COLCHETE_DIREITO (284)
+INTERROGACAO (285)
+TAB (286)
+FIM_LINHA (287) 3 15
+INTEIRO (288) 22
+DECIMAL (289) 18 23 37
+CARACTERE (290) 25
+TIPO_STRING (291) 24
+INCLUA (292) 38
+DEFINA (293)
+LER (294)
+MOSTRA (295) 39 40
+ENQUANTO (296) 45
+FACA (297) 45 47
+FIM_ENQUANTO (298) 46
+PARA (299) 47
+DE (300) 47
+ATE (301) 47
+PASSO (302) 47
+INCREMENTO (303)
+FIM_PARA (304) 48
+REPITA (305)
+SE (306) 41
+ENTAO (307) 41
+SENAO (308) 42
+FIM_SENAO (309) 43
+FIM_SE (310) 44
+ESCOLHA (311) 49
+CASO (312) 50
+PARE (313) 51
+CASO_CONTRARIO (314) 52
+FIM_ESCOLHA (315) 53
+IDENTIFICADOR (316) 16 20 21 34 35 38 40 47
+REAL (317)
+FRASE (318) 19 39
+NUMERO (319) 17 36
+
+
+Não-terminais com as regras onde eles aparecem
+
+$accept (65)
+    à esquerda: 0
+Entrada (66)
+    à esquerda: 1 2, à direita: 0 2
+Linha (67)
+    à esquerda: 3 4 5 6, à direita: 2
+Expressoes (68)
+    à esquerda: 7 8 9 10 11 12 13 14 15, à direita: 5
+AtribuicaoExpressao (69)
+    à esquerda: 16, à direita: 7
+AtribuicaoTipo (70)
+    à esquerda: 17 18 19, à direita: 16 21
+ExpressaoDeclaracao (71)
+    à esquerda: 20 21, à direita: 8
+Tipo (72)
+    à esquerda: 22 23 24 25, à direita: 20 21
+Comparador (73)
+    à esquerda: 26 27 28 29 30 31, à direita: 34
+Incremento (74)
+    à esquerda: 32 33, à direita: 47
+Parametro (75)
+    à esquerda: 34, à direita: 41 45
+Variavel (76)
+    à esquerda: 35 36 37, à direita: 47 49 50
+Inclua (77)
+    à esquerda: 38, à direita: 9
+Mostra (78)
+    à esquerda: 39 40, à direita: 10
+Se (79)
+    à esquerda: 41 42 43 44, à direita: 11
+Enquanto (80)
+    à esquerda: 45 46, à direita: 12
+Para (81)
+    à esquerda: 47 48, à direita: 13
+Escolha (82)
+    à esquerda: 49 50 51 52 53, à direita: 14
+
+
+State 0
+
+    0 $accept: . Entrada $end
+
+    $padrão  reduzir usando a regra 1 (Entrada)
+
+    Entrada  ir ao estado 1
+
+
+State 1
+
+    0 $accept: Entrada . $end
+    2 Entrada: Entrada . Linha
+
+    $end            deslocar, e ir ao estado 2
+    error           deslocar, e ir ao estado 3
+    ALGORITMO       deslocar, e ir ao estado 4
+    FIM_ALGORITMO   deslocar, e ir ao estado 5
+    FIM_LINHA       deslocar, e ir ao estado 6
+    INTEIRO         deslocar, e ir ao estado 7
+    DECIMAL         deslocar, e ir ao estado 8
+    CARACTERE       deslocar, e ir ao estado 9
+    TIPO_STRING     deslocar, e ir ao estado 10
+    INCLUA          deslocar, e ir ao estado 11
+    MOSTRA          deslocar, e ir ao estado 12
+    ENQUANTO        deslocar, e ir ao estado 13
+    FIM_ENQUANTO    deslocar, e ir ao estado 14
+    PARA            deslocar, e ir ao estado 15
+    FIM_PARA        deslocar, e ir ao estado 16
+    SE              deslocar, e ir ao estado 17
+    SENAO           deslocar, e ir ao estado 18
+    FIM_SENAO       deslocar, e ir ao estado 19
+    FIM_SE          deslocar, e ir ao estado 20
+    ESCOLHA         deslocar, e ir ao estado 21
+    CASO            deslocar, e ir ao estado 22
+    PARE            deslocar, e ir ao estado 23
+    CASO_CONTRARIO  deslocar, e ir ao estado 24
+    FIM_ESCOLHA     deslocar, e ir ao estado 25
+    IDENTIFICADOR   deslocar, e ir ao estado 26
+
+    Linha                ir ao estado 27
+    Expressoes           ir ao estado 28
+    AtribuicaoExpressao  ir ao estado 29
+    ExpressaoDeclaracao  ir ao estado 30
+    Tipo                 ir ao estado 31
+    Inclua               ir ao estado 32
+    Mostra               ir ao estado 33
+    Se                   ir ao estado 34
+    Enquanto             ir ao estado 35
+    Para                 ir ao estado 36
+    Escolha              ir ao estado 37
+
+
+State 2
+
+    0 $accept: Entrada $end .
+
+    $padrão  aceitar
+
+
+State 3
+
+   15 Expressoes: error . FIM_LINHA
+
+    FIM_LINHA  deslocar, e ir ao estado 38
+
+
+State 4
+
+    4 Linha: ALGORITMO .
+
+    $padrão  reduzir usando a regra 4 (Linha)
+
+
+State 5
+
+    6 Linha: FIM_ALGORITMO .
+
+    $padrão  reduzir usando a regra 6 (Linha)
+
+
+State 6
+
+    3 Linha: FIM_LINHA .
+
+    $padrão  reduzir usando a regra 3 (Linha)
+
+
+State 7
+
+   22 Tipo: INTEIRO .
+
+    $padrão  reduzir usando a regra 22 (Tipo)
+
+
+State 8
+
+   23 Tipo: DECIMAL .
+
+    $padrão  reduzir usando a regra 23 (Tipo)
+
+
+State 9
+
+   25 Tipo: CARACTERE .
+
+    $padrão  reduzir usando a regra 25 (Tipo)
+
+
+State 10
+
+   24 Tipo: TIPO_STRING .
+
+    $padrão  reduzir usando a regra 24 (Tipo)
+
+
+State 11
+
+   38 Inclua: INCLUA . MENOR IDENTIFICADOR MAIOR
+
+    MENOR  deslocar, e ir ao estado 39
+
+
+State 12
+
+   39 Mostra: MOSTRA . FRASE
+   40       | MOSTRA . IDENTIFICADOR
+
+    IDENTIFICADOR  deslocar, e ir ao estado 40
+    FRASE          deslocar, e ir ao estado 41
+
+
+State 13
+
+   45 Enquanto: ENQUANTO . PAR_ESQ Parametro PAR_DIR FACA
+
+    PAR_ESQ  deslocar, e ir ao estado 42
+
+
+State 14
+
+   46 Enquanto: FIM_ENQUANTO .
+
+    $padrão  reduzir usando a regra 46 (Enquanto)
+
+
+State 15
+
+   47 Para: PARA . PAR_ESQ IDENTIFICADOR DE Variavel ATE Variavel PASSO IDENTIFICADOR Incremento PAR_DIR FACA
+
+    PAR_ESQ  deslocar, e ir ao estado 43
+
+
+State 16
+
+   48 Para: FIM_PARA .
+
+    $padrão  reduzir usando a regra 48 (Para)
+
+
+State 17
+
+   41 Se: SE . PAR_ESQ Parametro PAR_DIR ENTAO
+
+    PAR_ESQ  deslocar, e ir ao estado 44
+
+
+State 18
+
+   42 Se: SENAO .
+
+    $padrão  reduzir usando a regra 42 (Se)
+
+
+State 19
+
+   43 Se: FIM_SENAO .
+
+    $padrão  reduzir usando a regra 43 (Se)
+
+
+State 20
+
+   44 Se: FIM_SE .
+
+    $padrão  reduzir usando a regra 44 (Se)
+
+
+State 21
+
+   49 Escolha: ESCOLHA . PAR_ESQ Variavel PAR_DIR
+
+    PAR_ESQ  deslocar, e ir ao estado 45
+
+
+State 22
+
+   50 Escolha: CASO . Variavel
+
+    DECIMAL        deslocar, e ir ao estado 46
+    IDENTIFICADOR  deslocar, e ir ao estado 47
+    NUMERO         deslocar, e ir ao estado 48
+
+    Variavel  ir ao estado 49
+
+
+State 23
+
+   51 Escolha: PARE .
+
+    $padrão  reduzir usando a regra 51 (Escolha)
+
+
+State 24
+
+   52 Escolha: CASO_CONTRARIO .
+
+    $padrão  reduzir usando a regra 52 (Escolha)
+
+
+State 25
+
+   53 Escolha: FIM_ESCOLHA .
+
+    $padrão  reduzir usando a regra 53 (Escolha)
+
+
+State 26
+
+   16 AtribuicaoExpressao: IDENTIFICADOR . ATRIBUICAO AtribuicaoTipo
+
+    ATRIBUICAO  deslocar, e ir ao estado 50
+
+
+State 27
+
+    2 Entrada: Entrada Linha .
+
+    $padrão  reduzir usando a regra 2 (Entrada)
+
+
+State 28
+
+    5 Linha: Expressoes .
+
+    $padrão  reduzir usando a regra 5 (Linha)
+
+
+State 29
+
+    7 Expressoes: AtribuicaoExpressao .
+
+    $padrão  reduzir usando a regra 7 (Expressoes)
+
+
+State 30
+
+    8 Expressoes: ExpressaoDeclaracao .
+
+    $padrão  reduzir usando a regra 8 (Expressoes)
+
+
+State 31
+
+   20 ExpressaoDeclaracao: Tipo . IDENTIFICADOR
+   21                    | Tipo . IDENTIFICADOR ATRIBUICAO AtribuicaoTipo
+
+    IDENTIFICADOR  deslocar, e ir ao estado 51
+
+
+State 32
+
+    9 Expressoes: Inclua .
+
+    $padrão  reduzir usando a regra 9 (Expressoes)
+
+
+State 33
+
+   10 Expressoes: Mostra .
+
+    $padrão  reduzir usando a regra 10 (Expressoes)
+
+
+State 34
+
+   11 Expressoes: Se .
+
+    $padrão  reduzir usando a regra 11 (Expressoes)
+
+
+State 35
+
+   12 Expressoes: Enquanto .
+
+    $padrão  reduzir usando a regra 12 (Expressoes)
+
+
+State 36
+
+   13 Expressoes: Para .
+
+    $padrão  reduzir usando a regra 13 (Expressoes)
+
+
+State 37
+
+   14 Expressoes: Escolha .
+
+    $padrão  reduzir usando a regra 14 (Expressoes)
+
+
+State 38
+
+   15 Expressoes: error FIM_LINHA .
+
+    $padrão  reduzir usando a regra 15 (Expressoes)
+
+
+State 39
+
+   38 Inclua: INCLUA MENOR . IDENTIFICADOR MAIOR
+
+    IDENTIFICADOR  deslocar, e ir ao estado 52
+
+
+State 40
+
+   40 Mostra: MOSTRA IDENTIFICADOR .
+
+    $padrão  reduzir usando a regra 40 (Mostra)
+
+
+State 41
+
+   39 Mostra: MOSTRA FRASE .
+
+    $padrão  reduzir usando a regra 39 (Mostra)
+
+
+State 42
+
+   45 Enquanto: ENQUANTO PAR_ESQ . Parametro PAR_DIR FACA
+
+    IDENTIFICADOR  deslocar, e ir ao estado 53
+
+    Parametro  ir ao estado 54
+
+
+State 43
+
+   47 Para: PARA PAR_ESQ . IDENTIFICADOR DE Variavel ATE Variavel PASSO IDENTIFICADOR Incremento PAR_DIR FACA
+
+    IDENTIFICADOR  deslocar, e ir ao estado 55
+
+
+State 44
+
+   41 Se: SE PAR_ESQ . Parametro PAR_DIR ENTAO
+
+    IDENTIFICADOR  deslocar, e ir ao estado 53
+
+    Parametro  ir ao estado 56
+
+
+State 45
+
+   49 Escolha: ESCOLHA PAR_ESQ . Variavel PAR_DIR
+
+    DECIMAL        deslocar, e ir ao estado 46
+    IDENTIFICADOR  deslocar, e ir ao estado 47
+    NUMERO         deslocar, e ir ao estado 48
+
+    Variavel  ir ao estado 57
+
+
+State 46
+
+   37 Variavel: DECIMAL .
+
+    $padrão  reduzir usando a regra 37 (Variavel)
+
+
+State 47
+
+   35 Variavel: IDENTIFICADOR .
+
+    $padrão  reduzir usando a regra 35 (Variavel)
+
+
+State 48
+
+   36 Variavel: NUMERO .
+
+    $padrão  reduzir usando a regra 36 (Variavel)
+
+
+State 49
+
+   50 Escolha: CASO Variavel .
+
+    $padrão  reduzir usando a regra 50 (Escolha)
+
+
+State 50
+
+   16 AtribuicaoExpressao: IDENTIFICADOR ATRIBUICAO . AtribuicaoTipo
+
+    DECIMAL  deslocar, e ir ao estado 58
+    FRASE    deslocar, e ir ao estado 59
+    NUMERO   deslocar, e ir ao estado 60
+
+    AtribuicaoTipo  ir ao estado 61
+
+
+State 51
+
+   20 ExpressaoDeclaracao: Tipo IDENTIFICADOR .
+   21                    | Tipo IDENTIFICADOR . ATRIBUICAO AtribuicaoTipo
+
+    ATRIBUICAO  deslocar, e ir ao estado 62
+
+    $padrão  reduzir usando a regra 20 (ExpressaoDeclaracao)
+
+
+State 52
+
+   38 Inclua: INCLUA MENOR IDENTIFICADOR . MAIOR
+
+    MAIOR  deslocar, e ir ao estado 63
+
+
+State 53
+
+   34 Parametro: IDENTIFICADOR . Comparador IDENTIFICADOR
+
+    IGUAL        deslocar, e ir ao estado 64
+    MAIOR        deslocar, e ir ao estado 65
+    MENOR        deslocar, e ir ao estado 66
+    MAIOR_IGUAL  deslocar, e ir ao estado 67
+    MENOR_IGUAL  deslocar, e ir ao estado 68
+    DIFERENTE    deslocar, e ir ao estado 69
+
+    Comparador  ir ao estado 70
+
+
+State 54
+
+   45 Enquanto: ENQUANTO PAR_ESQ Parametro . PAR_DIR FACA
+
+    PAR_DIR  deslocar, e ir ao estado 71
+
+
+State 55
+
+   47 Para: PARA PAR_ESQ IDENTIFICADOR . DE Variavel ATE Variavel PASSO IDENTIFICADOR Incremento PAR_DIR FACA
+
+    DE  deslocar, e ir ao estado 72
+
+
+State 56
+
+   41 Se: SE PAR_ESQ Parametro . PAR_DIR ENTAO
+
+    PAR_DIR  deslocar, e ir ao estado 73
+
+
+State 57
+
+   49 Escolha: ESCOLHA PAR_ESQ Variavel . PAR_DIR
+
+    PAR_DIR  deslocar, e ir ao estado 74
+
+
+State 58
+
+   18 AtribuicaoTipo: DECIMAL .
+
+    $padrão  reduzir usando a regra 18 (AtribuicaoTipo)
+
+
+State 59
+
+   19 AtribuicaoTipo: FRASE .
+
+    $padrão  reduzir usando a regra 19 (AtribuicaoTipo)
+
+
+State 60
+
+   17 AtribuicaoTipo: NUMERO .
+
+    $padrão  reduzir usando a regra 17 (AtribuicaoTipo)
+
+
+State 61
+
+   16 AtribuicaoExpressao: IDENTIFICADOR ATRIBUICAO AtribuicaoTipo .
+
+    $padrão  reduzir usando a regra 16 (AtribuicaoExpressao)
+
+
+State 62
+
+   21 ExpressaoDeclaracao: Tipo IDENTIFICADOR ATRIBUICAO . AtribuicaoTipo
+
+    DECIMAL  deslocar, e ir ao estado 58
+    FRASE    deslocar, e ir ao estado 59
+    NUMERO   deslocar, e ir ao estado 60
+
+    AtribuicaoTipo  ir ao estado 75
+
+
+State 63
+
+   38 Inclua: INCLUA MENOR IDENTIFICADOR MAIOR .
+
+    $padrão  reduzir usando a regra 38 (Inclua)
+
+
+State 64
+
+   26 Comparador: IGUAL .
+
+    $padrão  reduzir usando a regra 26 (Comparador)
+
+
+State 65
+
+   27 Comparador: MAIOR .
+
+    $padrão  reduzir usando a regra 27 (Comparador)
+
+
+State 66
+
+   28 Comparador: MENOR .
+
+    $padrão  reduzir usando a regra 28 (Comparador)
+
+
+State 67
+
+   29 Comparador: MAIOR_IGUAL .
+
+    $padrão  reduzir usando a regra 29 (Comparador)
+
+
+State 68
+
+   30 Comparador: MENOR_IGUAL .
+
+    $padrão  reduzir usando a regra 30 (Comparador)
+
+
+State 69
+
+   31 Comparador: DIFERENTE .
+
+    $padrão  reduzir usando a regra 31 (Comparador)
+
+
+State 70
+
+   34 Parametro: IDENTIFICADOR Comparador . IDENTIFICADOR
+
+    IDENTIFICADOR  deslocar, e ir ao estado 76
+
+
+State 71
+
+   45 Enquanto: ENQUANTO PAR_ESQ Parametro PAR_DIR . FACA
+
+    FACA  deslocar, e ir ao estado 77
+
+
+State 72
+
+   47 Para: PARA PAR_ESQ IDENTIFICADOR DE . Variavel ATE Variavel PASSO IDENTIFICADOR Incremento PAR_DIR FACA
+
+    DECIMAL        deslocar, e ir ao estado 46
+    IDENTIFICADOR  deslocar, e ir ao estado 47
+    NUMERO         deslocar, e ir ao estado 48
+
+    Variavel  ir ao estado 78
+
+
+State 73
+
+   41 Se: SE PAR_ESQ Parametro PAR_DIR . ENTAO
+
+    ENTAO  deslocar, e ir ao estado 79
+
+
+State 74
+
+   49 Escolha: ESCOLHA PAR_ESQ Variavel PAR_DIR .
+
+    $padrão  reduzir usando a regra 49 (Escolha)
+
+
+State 75
+
+   21 ExpressaoDeclaracao: Tipo IDENTIFICADOR ATRIBUICAO AtribuicaoTipo .
+
+    $padrão  reduzir usando a regra 21 (ExpressaoDeclaracao)
+
+
+State 76
+
+   34 Parametro: IDENTIFICADOR Comparador IDENTIFICADOR .
+
+    $padrão  reduzir usando a regra 34 (Parametro)
+
+
+State 77
+
+   45 Enquanto: ENQUANTO PAR_ESQ Parametro PAR_DIR FACA .
+
+    $padrão  reduzir usando a regra 45 (Enquanto)
+
+
+State 78
+
+   47 Para: PARA PAR_ESQ IDENTIFICADOR DE Variavel . ATE Variavel PASSO IDENTIFICADOR Incremento PAR_DIR FACA
+
+    ATE  deslocar, e ir ao estado 80
+
+
+State 79
+
+   41 Se: SE PAR_ESQ Parametro PAR_DIR ENTAO .
+
+    $padrão  reduzir usando a regra 41 (Se)
+
+
+State 80
+
+   47 Para: PARA PAR_ESQ IDENTIFICADOR DE Variavel ATE . Variavel PASSO IDENTIFICADOR Incremento PAR_DIR FACA
+
+    DECIMAL        deslocar, e ir ao estado 46
+    IDENTIFICADOR  deslocar, e ir ao estado 47
+    NUMERO         deslocar, e ir ao estado 48
+
+    Variavel  ir ao estado 81
+
+
+State 81
+
+   47 Para: PARA PAR_ESQ IDENTIFICADOR DE Variavel ATE Variavel . PASSO IDENTIFICADOR Incremento PAR_DIR FACA
+
+    PASSO  deslocar, e ir ao estado 82
+
+
+State 82
+
+   47 Para: PARA PAR_ESQ IDENTIFICADOR DE Variavel ATE Variavel PASSO . IDENTIFICADOR Incremento PAR_DIR FACA
+
+    IDENTIFICADOR  deslocar, e ir ao estado 83
+
+
+State 83
+
+   47 Para: PARA PAR_ESQ IDENTIFICADOR DE Variavel ATE Variavel PASSO IDENTIFICADOR . Incremento PAR_DIR FACA
+
+    MAIS   deslocar, e ir ao estado 84
+    MENOS  deslocar, e ir ao estado 85
+
+    Incremento  ir ao estado 86
+
+
+State 84
+
+   32 Incremento: MAIS .
+
+    $padrão  reduzir usando a regra 32 (Incremento)
+
+
+State 85
+
+   33 Incremento: MENOS .
+
+    $padrão  reduzir usando a regra 33 (Incremento)
+
+
+State 86
+
+   47 Para: PARA PAR_ESQ IDENTIFICADOR DE Variavel ATE Variavel PASSO IDENTIFICADOR Incremento . PAR_DIR FACA
+
+    PAR_DIR  deslocar, e ir ao estado 87
+
+
+State 87
+
+   47 Para: PARA PAR_ESQ IDENTIFICADOR DE Variavel ATE Variavel PASSO IDENTIFICADOR Incremento PAR_DIR . FACA
+
+    FACA  deslocar, e ir ao estado 88
+
+
+State 88
+
+   47 Para: PARA PAR_ESQ IDENTIFICADOR DE Variavel ATE Variavel PASSO IDENTIFICADOR Incremento PAR_DIR FACA .
+
+    $padrão  reduzir usando a regra 47 (Para)

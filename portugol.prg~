@@ -1,0 +1,46 @@
+algoritmo
+
+inclua <codigo>
+
+inteiro a := 10
+inteiro b := 3
+inteiro c := 5
+inteiro d := 4
+
+mostrar "Ponto de Controle 3"
+mostrar "se/enquanto/para"
+
+se ( a > d ) entao 
+mostrar "se dentro do se"
+fim-se
+se ( a < b ) entao 
+fim-se
+senao 
+mostrar "senao do se" 
+fim-senao
+
+enquanto ( a > d ) faca
+mostrar "enquanto" 
+fim-enquanto
+
+mostrar "Alguma coisa"
+
+para ( i de 0 ate 10 passo i + ) faca
+mostrar "for" se ( c > d) entao
+mostrar "se dentro do for" fim-se
+fim-para
+
+escolha ( b )
+caso 1
+mostrar "fui para caso 1"
+pare
+caso 2
+mostrar "fui para caso 2"
+pare
+caso 3
+mostrar "fui para caso 3"
+pare
+
+fim-escolha
+
+fim-algoritmo
